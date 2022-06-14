@@ -39,7 +39,7 @@ function Home() {
         "Are you sure, do you want to delete this student?"
       );
       if (ask) {
-        await axios.delete(`https://versioncontrol-12.herokuapp.com/${id}`, {
+        await axios.delete(`https://versioncontrol-12.herokuapp.com/deleterepo/${id}`, {
           headers: {
             Authorization: window.localStorage.getItem("myapptoken"),
           },
