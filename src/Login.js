@@ -15,7 +15,7 @@ function Login() {
     },
     onSubmit: async (values) => {
       try {
-        let loginData = await axios.post("http://localhost:3001/login", values);
+        let loginData = await axios.post("https://versioncontrol-12.herokuapp.com/login", values);
         window.localStorage.setItem("myapptoken", loginData.data.token);
         navigate("/home");
       } catch (error) {
