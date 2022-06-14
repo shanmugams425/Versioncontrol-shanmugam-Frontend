@@ -12,36 +12,11 @@ function Home() {
       name: "",
       commit: "",
     },
-    // onSubmit: async (values) => {
-    //   try {
-    //     if (isEdit) {
-    //       await axios.put(
-    //         `http://localhost:3001/student/${currentStudent}`,
-    //         values,
-    //         {
-    //           headers: {
-    //             Authorization: window.localStorage.getItem("myapptoken"),
-    //           },
-    //         }
-    //       );
-    //       fetchAll();
-    //     } else {
-    //       await axios.post("http://localhost:3001/student", values, {
-    //         headers: {
-    //           Authorization: window.localStorage.getItem("myapptoken"),
-    //         },
-    //       });
-    //       fetchAll();
-    //     }
-    //   } catch (error) {
-    //     alert("Something went wrong");
-    //   }
-    // },
   });
 
   async function fetchAll() {
     try {
-      let studentsData = await axios.get("http://localhost:3001/students", {
+      let studentsData = await axios.get("https://versioncontrol-12.herokuapp.com/viewrepo", {
         headers: {
           Authorization: window.localStorage.getItem("myapptoken"),
         },
@@ -56,24 +31,7 @@ function Home() {
     fetchAll();
   }, []);
 
-  // let handleView = async(id)
-
-  // let handleEdit = async (id) => {
-  //   try {
-  //     let studetData = await axios.get(`http://localhost:3001/student/${id}`, {
-  //       headers: {
-  //         Authorization: window.localStorage.getItem("myapptoken"),
-  //       },
-  //     });
-  //     formik.setValues({
-  //       name: studetData.data.name,
-  //     });
-  //     setCurrentStudet(studetData.data._id);
-  //     setIsEdit(true);
-  //   } catch (error) {
-  //     alert("Something went wrong");
-  //   }
-  // };
+ 
 
   let handleDelete = async (id) => {
     try {
@@ -81,7 +39,7 @@ function Home() {
         "Are you sure, do you want to delete this student?"
       );
       if (ask) {
-        await axios.delete(`http://localhost:3001/student/${id}`, {
+        await axios.delete(`https://versioncontrol-12.herokuapp.com/${id}`, {
           headers: {
             Authorization: window.localStorage.getItem("myapptoken"),
           },

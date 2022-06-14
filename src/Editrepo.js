@@ -22,7 +22,7 @@ let formik = useFormik({
     try {
       
         await axios.put(
-          `http://localhost:3001/student/${currentStudent}`,
+          `https://versioncontrol-12.herokuapp.com/editrepo/${currentStudent}`,
           values,
           {
             headers: {
@@ -41,7 +41,7 @@ let formik = useFormik({
 
   useEffect( async () => {
     try {
-        let studetData = await axios.get(`http://localhost:3001/student/${params.id}`, {
+        let studetData = await axios.get(`https://versioncontrol-12.herokuapp.com/repo/${params.id}`, {
             headers: {
               Authorization: window.localStorage.getItem("myapptoken"),
             },

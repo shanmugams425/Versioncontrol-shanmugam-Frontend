@@ -18,7 +18,7 @@ let formik = useFormik({
   onSubmit: async (values) => {
     setwait("Wait for a moment")
     try {
-      await axios.post('http://localhost:3001/student', values, {
+      await axios.post('https://versioncontrol-12.herokuapp.com/newrepo', values, {
           headers: {
             Authorization: window.localStorage.getItem('myapptoken'),
           },
