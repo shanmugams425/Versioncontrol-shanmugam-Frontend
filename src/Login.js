@@ -1,7 +1,9 @@
+import "./App.css";
 import axios from "axios";
 import { useFormik } from "formik";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+
 
 function Login() {
 
@@ -25,9 +27,14 @@ function Login() {
       }
     },
   });
+
+// let func = () => {
+//   value ="tamil" 
+// }
+
   return (
-    <div className="container">
-      <div className="row mt-5 p-2 ">
+    <div className="container" >
+      <div className="row" id="top">
         <div className="col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6">
           <h1 className="text-center text-primary p-1">
             Version Control System
@@ -47,19 +54,19 @@ function Login() {
         </div>
         <div className="col-1"></div>
         <div className="card shadow  bg-white col-sm-12 col-md-12 col-lg-5 col-xl-5 col-xxl-5">
-          <form class onSubmit={formik.handleSubmit}>
+          <form  onSubmit={formik.handleSubmit}>
             <h4 className="mt-3 text-center">Login</h4>
 
             <div className="m-3 fw-2">
               <label>Email</label>
               <input
                 type={"email"}
-                className="form-control"
+                className="form-control standard-basic"
                 name="email"
                 id="email"
                 onChange={formik.handleChange}
                 value={formik.values.email}
-              />
+                ></input>
             </div>
             <div className="m-3">
               <label>Password</label>
@@ -83,7 +90,7 @@ function Login() {
               <Link to={"/register"} className="link-primary ms-3">
                 Register
               </Link>
-
+             
               
             </div>
           </form>

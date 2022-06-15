@@ -8,13 +8,13 @@ import { useEffect } from "react";
 function CreateRespo() {
     let navigate = useNavigate();
    let params = useParams()
-  const [isEdit, setIsEdit] = useState(false);
   const [currentStudent, setCurrentStudet] = useState("");
 
 let formik = useFormik({
   initialValues: {
     name:"",
-    commit:""
+    commit:"",
+    code:'',
     
   },
   onSubmit: async (values) => {
@@ -51,7 +51,6 @@ let formik = useFormik({
                   code:studetData.data.code
                 });
           setCurrentStudet(studetData.data._id)
-        //   setIsEdit(true);
         } catch (error) {
           alert("Something went wrong1");
     }         
@@ -69,12 +68,12 @@ return (
               
              </div>
              <div className="mt-2">
-                <label for="formGroupExampleInput2" className="form-label"> Commit</label>
+                <label htmlFor="formGroupExampleInput2" className="form-label"> Commit</label>
                 <input type="text" className="form-control" id="commit"  onChange={formik.handleChange} value={formik.values.commit} placeholder="Commit"/>
              </div>
-             <div class="mt-5">
-             <div class="form-group">
-                 <textarea class="form-control text-info bg-dark " placeholder="Enter your code here" value={formik.values.code}
+             <div className="mt-5">
+             <div className="form-group">
+                 <textarea className="form-control text-info bg-dark " placeholder="Enter your code here" value={formik.values.code}
                       id="code"  rows="15" onChange={formik.handleChange}></textarea>
                </div>
             </div>
