@@ -4,11 +4,9 @@ import { useFormik } from "formik";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-
 function Login() {
+  const [password, setpassword] = useState("");
 
-  const [password,setpassword] = useState("")
-  
   let navigate = useNavigate();
   let formik = useFormik({
     initialValues: {
@@ -17,23 +15,25 @@ function Login() {
     },
     onSubmit: async (values) => {
       try {
-        let loginData = await axios.post("https://versioncontrol-12.herokuapp.com/login", values);
+        let loginData = await axios.post(
+          "https://versioncontrol-shanmugam-backend-5a7s7wf0x-shanmugams425.vercel.app/login",
+          values
+        );
         window.localStorage.setItem("myapptoken", loginData.data.token);
         navigate("/home");
       } catch (error) {
         console.log(error);
-       setpassword("Invaild email or password")
-      
+        setpassword("Invaild email or password");
       }
     },
   });
 
-// let func = () => {
-//   value ="tamil" 
-// }
+  // let func = () => {
+  //   value ="tamil"
+  // }
 
   return (
-    <div className="container" >
+    <div className="container">
       <div className="row" id="top">
         <div className="col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6">
           <h1 className="text-center text-primary p-1">
@@ -54,7 +54,7 @@ function Login() {
         </div>
         <div className="col-1"></div>
         <div className="card shadow  bg-white col-sm-12 col-md-12 col-lg-5 col-xl-5 col-xxl-5">
-          <form  onSubmit={formik.handleSubmit}>
+          <form onSubmit={formik.handleSubmit}>
             <h4 className="mt-3 text-center">Login</h4>
 
             <div className="m-3 fw-2">
@@ -66,7 +66,7 @@ function Login() {
                 id="email"
                 onChange={formik.handleChange}
                 value={formik.values.email}
-                ></input>
+              ></input>
             </div>
             <div className="m-3">
               <label>Password</label>
@@ -77,8 +77,8 @@ function Login() {
                 id="password"
                 onChange={formik.handleChange}
                 value={formik.values.password}
-                
-              /><span className="text-start text-danger">{password}</span>
+              />
+              <span className="text-start text-danger">{password}</span>
             </div>
             <p></p>
             <div className="ms-3 m-3">
@@ -90,8 +90,6 @@ function Login() {
               <Link to={"/register"} className="link-primary ms-3">
                 Register
               </Link>
-             
-              
             </div>
           </form>
         </div>

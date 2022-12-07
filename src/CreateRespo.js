@@ -19,7 +19,7 @@ function CreateRespo() {
       setwait("Wait for a moment");
       try {
         await axios.post(
-          "https://versioncontrol-12.herokuapp.com/newrepo",
+          "https://versioncontrol-shanmugam-backend-5a7s7wf0x-shanmugams425.vercel.app/newrepo",
           values,
           {
             headers: {

@@ -2,18 +2,20 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-
 function Home() {
   let navigate = useNavigate();
   const [students, setStudents] = useState([]);
-  
+
   async function fetchAll() {
     try {
-      let studentsData = await axios.get("https://versioncontrol-12.herokuapp.com/viewrepo", {
-        headers: {
-          Authorization: window.localStorage.getItem("myapptoken"),
-        },
-      });
+      let studentsData = await axios.get(
+        "https://versioncontrol-shanmugam-backend-5a7s7wf0x-shanmugams425.vercel.app/viewrepo",
+        {
+          headers: {
+            Authorization: window.localStorage.getItem("myapptoken"),
+          },
+        }
+      );
       setStudents(studentsData.data);
     } catch (error) {
       alert("Something went wrong");
@@ -24,19 +26,20 @@ function Home() {
     fetchAll();
   }, []);
 
- 
-
   let handleDelete = async (id) => {
     try {
       let ask = window.confirm(
         "Are you sure, do you want to delete this student?"
       );
       if (ask) {
-        await axios.delete(`https://versioncontrol-12.herokuapp.com/deleterepo/${id}`, {
-          headers: {
-            Authorization: window.localStorage.getItem("myapptoken"),
-          },
-        });
+        await axios.delete(
+          `https://versioncontrol-shanmugam-backend-5a7s7wf0x-shanmugams425.vercel.app/deleterepo/${id}`,
+          {
+            headers: {
+              Authorization: window.localStorage.getItem("myapptoken"),
+            },
+          }
+        );
         fetchAll();
       }
     } catch (error) {
@@ -58,21 +61,17 @@ function Home() {
             <span className="ms-2 fs-3">Version Control</span>
           </a>
           <ul className="nav justify-content-end">
-            <li  className="nav-item me-3">
-              <Link to={"/newrepo"}>
-                Create a new repository
-              </Link>
+            <li className="nav-item me-3">
+              <Link to={"/newrepo"}>Create a new repository</Link>
             </li>
             <li className="nav-item">
-              <a href= "#"onClick={handleLogout} >
+              <a href="#" onClick={handleLogout}>
                 Logout
               </a>
             </li>
           </ul>
         </div>
       </nav>
-
-
 
       <div className="row">
         <div className="col-sm-12 col-md-12 col-lg-5 col-xl-5 col-xxl-5">
@@ -89,11 +88,14 @@ function Home() {
                   <tr className="text-center">
                     <td className="h5 text-dark">{student.name}</td>
                     <td>
-                      <Link to={`/viewrepo/${student._id}`}
-                        className="btn btn-primary btn-sm ms-2">
+                      <Link
+                        to={`/viewrepo/${student._id}`}
+                        className="btn btn-primary btn-sm ms-2"
+                      >
                         view
                       </Link>
-                      <Link to={`/editrepo/${student._id}`} 
+                      <Link
+                        to={`/editrepo/${student._id}`}
                         className="btn btn-warning btn-sm ms-2"
                       >
                         Edit
