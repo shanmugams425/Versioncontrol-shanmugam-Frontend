@@ -13,7 +13,7 @@ function Login() {
       email: "",
       password: "",
     },
-    onSubmit: async (values) => {
+    onSubmit: async (values, e) => {
       try {
         let loginData = await axios.post(
           "https://versioncontrol-shanmugam-backend-5a7s7wf0x-shanmugams425.vercel.app/login",
@@ -23,14 +23,10 @@ function Login() {
         navigate("/home");
       } catch (error) {
         console.log(error);
-        setpassword("Invaild email or password");
+        setpassword(error);
       }
     },
   });
-
-  // let func = () => {
-  //   value ="tamil"
-  // }
 
   return (
     <div className="container">
