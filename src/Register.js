@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 function Register() {
   let navigate = useNavigate();
-  let formik = useFormik({
+  const { values, touched, errors, handleChange, handleSubmit } = useFormik({
     initialValues: {
       name: "",
       email: "",
@@ -26,8 +26,8 @@ function Register() {
 
       if (!values.password) {
         errors.password = "This field cannot be empty";
-      } else if (values.password.length > 15) {
-        errors.password = "Must be below 15 characters";
+      } else if (values.password.length > 6) {
+        errors.password = "Must be up to 6 characters";
       }
 
       return errors;
@@ -50,7 +50,7 @@ function Register() {
       <div className="row mt-5 p-2">
         <div className="col-4"></div>
         <div className="card shadow bg-white col-sm-12 col-md-12 col-lg-4 col-xl-4 col-xxl-4">
-          <form onSubmit={formik.handleSubmit}>
+          <form onSubmit={handleSubmit}>
             <h3 className="mt-3 text-center">Register</h3>
 
             <div className="row">
@@ -61,11 +61,11 @@ function Register() {
                   name="name"
                   id="name"
                   className="form-control"
-                  onChange={formik.handleChange}
-                  value={formik.values.name}
+                  onChange={handleChange}
+                  value={values.name}
                 />{" "}
-                {formik.errors.name ? (
-                  <div style={{ color: "red" }}>{formik.errors.name}</div>
+                {errors.name && touched.name ? (
+                  <div style={{ color: "red" }}>{errors.name}</div>
                 ) : null}
               </div>
               <div className="col-lg-12 mt-2">
@@ -75,11 +75,11 @@ function Register() {
                   name="email"
                   id="email"
                   className="form-control"
-                  onChange={formik.handleChange}
-                  value={formik.values.email}
+                  onChange={handleChange}
+                  value={values.email}
                 />{" "}
-                {formik.errors.email ? (
-                  <div style={{ color: "red" }}>{formik.errors.email}</div>
+                {errors.email && touched.email ? (
+                  <div style={{ color: "red" }}>{errors.email}</div>
                 ) : null}
               </div>
               <div className="col-lg-12 mt-2">
@@ -89,11 +89,11 @@ function Register() {
                   name="password"
                   id="password"
                   className="form-control"
-                  onChange={formik.handleChange}
-                  value={formik.values.password}
+                  onChange={handleChange}
+                  value={values.password}
                 />
-                {formik.errors.password ? (
-                  <div style={{ color: "red" }}>{formik.errors.password}</div>
+                {errors.password && touched.password ? (
+                  <div style={{ color: "red" }}>{errors.password}</div>
                 ) : null}
               </div>
               <div className="col-lg-12 m-2">
